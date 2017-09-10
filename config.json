@@ -1,0 +1,6 @@
+{
+  "proxy": {
+    "PROXY_WEBCLIENT": "",
+    "PROXY_BOTCONNECTOR": ""
+  }
+}

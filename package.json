@@ -1,0 +1,27 @@
+{
+  "name": "myfirstbot-botframework",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "start": "nodemon server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Paulo Victor Mathias Silva",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.0",
+    "botbuilder": "^3.9.1",
+    "express": "^4.15.4",
+    "express-handlebars": "^3.0.0",
+    "express-http-proxy": "^1.0.6",
+    "http": "0.0.0",
+    "https": "^1.0.0",
+    "morgan": "^1.8.2",
+    "nconf": "^0.8.4",
+    "path": "^0.12.7"
+  },
+  "devDependencies": {
+    "nodemon": "^1.9.1"
+  }
+}
