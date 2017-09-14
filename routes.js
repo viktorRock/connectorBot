@@ -27,7 +27,9 @@ const botframework = require('./connectors/botframework');
 
 
 router.post('/api/messages', function(req, res, next){
-  userServiceProxy(req,res);
+  let proxyCall = httpProxy(clientProxyURI);
+  proxyCall(req,res);
+  // userServiceProxy(req,res);
   next(); //Chama o botinho
 }, botframework.connector.listen());
 
