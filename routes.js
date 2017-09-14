@@ -20,6 +20,7 @@ const httpProxy = require('express-http-proxy');
 const config = require('./config');
 const clientProxyURI = config.get('PROXY_WEBCLIENT')
 const userServiceProxy = httpProxy(clientProxyURI);
+const LOG_PREFFIX = "#connectorBot: ";
 
 //adding botframework connector
 const botframework = require('./connectors/botframework');
@@ -28,7 +29,6 @@ const botframework = require('./connectors/botframework');
 router.post('/api/messages', function(req, res, next){
   userServiceProxy(req,res);
   next(); //Chama o botinho
-
 }, botframework.connector.listen());
 
 module.exports = router;
