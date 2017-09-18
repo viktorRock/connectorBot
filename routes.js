@@ -21,16 +21,23 @@ const config = require('./config');
 const clientProxyURI = config.get('PROXY_WEBCLIENT')
 const userServiceProxy = httpProxy(clientProxyURI);
 const LOG_PREFFIX = "#connectorBot: ";
-
+const BOTFRAMEWORK_MESSAGE = "message";
 //adding botframework connector
 const botframework = require('./connectors/botframework');
 
 
 router.post('/api/messages', function(req, res, next){
-  let proxyCall = httpProxy(clientProxyURI);
-  proxyCall(req,res);
+  console.log("type = " + req.body.type);
+
+  if(req.body.type == BOTFRAMEWORK_MESSAGE){
+    console.log("PROXY CALLER **************");
+    userServiceProxy(req,res);
+  }
   // userServiceProxy(req,res);
-  next(); //Chama o botinho
+  next();
 }, botframework.connector.listen());
+
+// Create endpoint for agent / call center
+router.use('/webchat', express.static('public'));
 
 module.exports = router;
