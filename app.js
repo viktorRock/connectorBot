@@ -16,7 +16,7 @@ const routes = require('./routes');
 const app = express();
 const LOG_MODE = 'dev';
 const config = require('./config');
-const getApiPORT = config.get('GET_API_PORT');
+const getApiPORT = config.get('CONNECTOR_BOT_API_PORT');
 // [START session]
 // Configure the session and session storage.
 // TODO: add session configs
