@@ -37,7 +37,8 @@ router.post('/api/messages', function(req, res, next){
   next();
 }, botframework.connector.listen());
 
-// Create endpoint for agent / call center
-router.use('/webchat', express.static('public'));
+router.post('/conn/messages', function(req, res, next){
+  console.log("CHEGOU !!!! conn/messages");
+});
 
 module.exports = router;
