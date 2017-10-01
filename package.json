@@ -10,18 +10,19 @@
   "author": "Paulo Victor Mathias Silva",
   "license": "ISC",
   "dependencies": {
-    "body-parser": "^1.18.0",
-    "botbuilder": "^3.10.1",
-    "express": "^4.15.4",
+    "body-parser": "^1.18.2",
+    "botbuilder": "^3.10.2",
+    "express": "^4.16.1",
     "express-handlebars": "^3.0.0",
-    "express-http-proxy": "^1.0.6",
+    "express-http-proxy": "^1.0.7",
+    "helmet": "^3.8.2",
     "http": "0.0.0",
     "https": "^1.0.0",
-    "morgan": "^1.8.2",
-    "nconf": "^0.8.4",
+    "morgan": "^1.9.0",
+    "nconf": "^0.8.5",
     "path": "^0.12.7"
   },
   "devDependencies": {
-    "nodemon": "^1.9.1"
+    "nodemon": "^1.12.1"
   }
 }

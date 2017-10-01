@@ -16,6 +16,7 @@ const routes = require('./routes');
 const app = express();
 const LOG_MODE = 'dev';
 const config = require('./config');
+var helmet = require('helmet');
 const getApiPORT = config.get('CONNECTOR_BOT_API_PORT');
 // [START session]
 // Configure the session and session storage.
@@ -33,6 +34,9 @@ app.use(logger(LOG_MODE));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use('/', routes);
+
+//segurança HTTP
+app.use(helmet());
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

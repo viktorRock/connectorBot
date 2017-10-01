@@ -1,4 +1,13 @@
+/* ##################################################################### */
+// Classe responsavel por administrar o Bot e as sessões do mesmo
+// TODO Verificar se vamos precisar de mais de um Bot
+// TODO Persistir sessões
+/* ##################################################################### */
 'use strict';
+
+// TODO Migrar para um session store robusto (connect-redis ou cookie-session)
+// https://github.com/tj/connect-redis
+var sessionList =  [];
 
 const builder = require('botbuilder');
 const connector = new builder.ChatConnector({
@@ -7,15 +16,21 @@ const connector = new builder.ChatConnector({
 });
 
 const bot = new builder.UniversalBot(connector, (session) => {
-  session.send("BOT: Você disse: %s", session.message.text);
+  let message = session.message;
+  sessionList[message.address.conversation.id] = session;
+  session.send("BOT: Você disse: %s", message.text);
 });
 
 const registerUserConversation = (event) => {
   event.connector = "botframework";
-  // TODO: Persist information here
+  // TODO: Persist conversations here
   // console.log("############## registerUserConversation")
   // console.log(event)
 };
+
+function findSession(conversationID){
+  return sessionList[conversationID];
+}
 
 // Middleware for logging
 bot.use({
@@ -31,5 +46,6 @@ bot.use({
 
 module.exports = {
   bot: bot,
-  connector: connector
+  connector: connector,
+  findSession : findSession
 };

@@ -18,13 +18,13 @@ const express = require('express');
 const router = express.Router();
 const httpProxy = require('express-http-proxy');
 const config = require('./config');
+
 const clientProxyURI = config.get('CONNECTOR_BOT_PROXY_WEBCLIENT')
 const userServiceProxy = httpProxy(clientProxyURI);
 const LOG_PREFFIX = "#connectorBot: ";
 const BOTFRAMEWORK_MESSAGE = "message";
 //adding botframework connector
 const botframework = require('./connectors/botframework');
-
 
 router.post('/api/messages', function(req, res, next){
   console.log("type = " + req.body.type);
@@ -37,8 +37,18 @@ router.post('/api/messages', function(req, res, next){
   next();
 }, botframework.connector.listen());
 
-router.post('/conn/messages', function(req, res, next){
-  console.log("CHEGOU !!!! conn/messages");
+router.post('/connector/messages', function(req, res, next){
+
+  console.log("retornando session ###########");
+  // console.log(req.body['message[msg][id]']);
+
+  let session = botframework.findSession(req.body['msg[id]']);
+  console.log(req.body);
+
+
+  if(session){
+    session.send(req.body['msg[mensagem]']);
+  }
 });
 
 module.exports = router;
