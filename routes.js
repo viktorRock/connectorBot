@@ -23,14 +23,15 @@ const clientProxyURI = config.get('CONNECTOR_BOT_PROXY_WEBCLIENT')
 const userServiceProxy = httpProxy(clientProxyURI);
 const LOG_PREFFIX = "#connectorBot: ";
 const BOTFRAMEWORK_MESSAGE = "message";
+const BOTFRAMEWORK_CONV_UPDATE = "conversationUpdate";
 //adding botframework connector
 const botframework = require('./connectors/botframework');
 
 router.post('/api/messages', function(req, res, next){
   console.log("type = " + req.body.type);
+  // console.log(req.body);
 
   if(req.body.type == BOTFRAMEWORK_MESSAGE){
-    console.log("PROXY CALLER **************");
     userServiceProxy(req,res);
   }
   // userServiceProxy(req,res);
@@ -38,16 +39,19 @@ router.post('/api/messages', function(req, res, next){
 }, botframework.connector.listen());
 
 router.post('/connector/messages', function(req, res, next){
+  var msg = req.body;
 
-  console.log("retornando session ###########");
-  // console.log(req.body['message[msg][id]']);
+  console.log(msg);
+  let session = botframework.findSession(msg.id);
 
-  let session = botframework.findSession(req.body['msg[id]']);
-  console.log(req.body);
-
-
+  //sessao do usuário do GoChannel
   if(session){
-    session.send(req.body['msg[mensagem]']);
+    // console.log("User %s disse %s", msg['msg[contato]'], msg['msg[mensagem]']);
+    var bot = session.message.address.bot;
+    let user = msg.contato;
+    bot.name = user;
+    session.send(msg.mensagem);
+
   }
 });
 
