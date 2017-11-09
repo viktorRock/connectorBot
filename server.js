@@ -5,7 +5,8 @@ const app = require('./app');
 const http = process.env.HTTPS == 'on' ? require('https') : require('http')
 const config = require('./config');
 /* Get port from environment and store in Express. */
-const port = normalizePort(config.get('CONNECTOR_BOT_PORT'));
+// const port = normalizePort(config.get('CONNECTOR_BOT_PORT'));
+var port = normalizePort(process.env.PORT || '3000');
 
 /* Create HTTP server. */
 var server = http.createServer(app);
