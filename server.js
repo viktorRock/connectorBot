@@ -1,6 +1,5 @@
 #!/usr/bin/env node
 'use strict';
-
 /* Module dependencies. */
 const app = require('./app');
 const http = process.env.HTTPS == 'on' ? require('https') : require('http')

@@ -9,9 +9,6 @@
 
   source: https://blog.risingstack.com/building-an-api-gateway-using-nodejs/
 */
-
-// This loads the environment variables from the .env file
-// require('dotenv-extended').load();
 'use strict';
 
 const express = require('express');
