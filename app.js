@@ -18,9 +18,6 @@ const LOG_MODE = 'dev';
 const config = require('./config');
 var helmet = require('helmet');
 const getApiPORT = config.get('CONNECTOR_BOT_API_PORT');
-// [START session]
-// Configure the session and session storage.
-// TODO: add session configs
 
 //Authorization
 // TODO: add auth, I suggest passportjs
