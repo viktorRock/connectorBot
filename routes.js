@@ -30,6 +30,7 @@ router.post('/api/messages', function(req, res, next){
 
   if(req.body.type == BOTFRAMEWORK_MESSAGE){
     userServiceProxy(req,res);
+    console.log("BOTFRAMEWORK_MESSAGE");
   }
   // userServiceProxy(req,res);
   next();
@@ -37,7 +38,7 @@ router.post('/api/messages', function(req, res, next){
 
 router.post('/connector/messages', function(req, res, next){
   var msg = req.body;
-
+  console.log("/connector/messages");
   console.log(msg);
   let session = botframework.findSession(msg.id);
 
