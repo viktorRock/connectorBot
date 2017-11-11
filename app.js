@@ -29,7 +29,6 @@ app.use((req, res, next) => {
   next()
 })
 
-
 app.use(logger(LOG_MODE));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
@@ -61,7 +60,4 @@ app.use(function(err, req, res, next) {
   }
 });
 
-app.listen(getApiPORT, function () {
-  console.log('GET_API_PORT = ' + getApiPORT);
-})
 module.exports = app;
