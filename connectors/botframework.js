@@ -18,7 +18,7 @@ const connector = new builder.ChatConnector({
 const bot = new builder.UniversalBot(connector, (session) => {
   let message = session.message;
   sessionList[message.address.conversation.id] = session;
-  session.send("BOT: Você disse: %s", message.text);
+  session.send(message.user.name + " disse: %s", message.text);
 });
 
 const registerUserConversation = (event) => {
