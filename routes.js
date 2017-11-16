@@ -44,7 +44,7 @@ router.post('/connector/messages', function(req, res, next){
 
   //sessao do usuário do GoChannel
   if(session){
-    session.send(msg.contato + " disse: %s", msg.mensagem);
+    session.send(msg.contato + " : %s", msg.mensagem);
   }
 });
 
